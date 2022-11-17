@@ -42,7 +42,7 @@ export default function User() {
                                     <td>{user.emailAddress}</td>
                                     <td>{user.phoneNumber}</td>
                                     <td>
-                                        <Link className='btn btn-primary mx-2' to={`/viewuser/${user.id}`}>View</Link>
+                                        <Link className='btn btn-success mx-2' to={`/viewuser/${user.id}`}>View</Link>
                                         <Link className='btn btn-outline-primary mx-2'
                                             to={`/edituser/${user.id}`}>Update</Link>
                                     </td>
@@ -51,7 +51,7 @@ export default function User() {
                         }
                     </tbody>
                 </table>
-                <Link className='btn btn-outline-dark' to="/adduser">Add User</Link>
+                <Link className='btn btn-dark' to="/adduser">Add User</Link>
                 <Link className="btn btn-outline-danger mx-2" to="/">Back To Home</Link>
             </div>
         </div>

@@ -1,9 +1,9 @@
 
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './layout/Navbar';
+import Navbar from './pages/Navbar';
 import Home from './pages/Home';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import AddUser from './users/AddUser';
 import EditUser from './users/EditUser';
 import User from './pages/User';
@@ -11,23 +11,25 @@ import ViewUser from './users/ViewUser';
 import Profile from './pages/Profile';
 import Aboutus from './pages/Aboutus';
 import Contact from './pages/Contact';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import Login from './pages/Login';
+import Login from   './pages/Login'
+import {useSelector} from 'react-redux';
 
 
 
-library.add(fas)
 
 
 function App() {
+  const isLogin = useSelector((state)=>state.auth.isAuthenticated);
   return (
+    
     <div className="App">
-      <Router>
-        <Navbar />
+      
+      <BrowserRouter>
+          <Navbar/>
         <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route exact path="/home" element={<Home />} />
+          <Route path='/' element={isLogin ? <Home/> : <Login/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/home' element={<Home/>}/>
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/contact" element={<Contact />} />
@@ -37,7 +39,7 @@ function App() {
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
         </Routes>
        
-      </Router>
+     </BrowserRouter>
 
     </div>
   );
